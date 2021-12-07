@@ -1,0 +1,30 @@
+version: '3'
+services:
+  sftp:
+    container_name: s3fsftp
+    build: .
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    ports:
+      - '22002:22'
+    environment:
+      AWS_S3_BUCKET: '${AWS_S3_BUCKET}'
+      AWS_S3_CREDENTIALS: '${AWS_S3_CREDENTIALS}'
+      AWS_S3_AUTHFILE: '${AWS_S3_AUTHFILE:-/etc/passwd-s3fs}'
+      AWS_S3_MOUNT: '${AWS_S3_MOUNT:-/opt/s3fs/bucket}'
+      AWS_S3_URL: '${AWS_S3_URL}'
+      AWS_S3_REGION: '${AWS_S3_REGION}'
+      USER_CONFIG: '${USER_CONFIG}'
+      SSH_HOST_DSA_KEY: '${SSH_HOST_DSA_KEY}'
+      SSH_HOST_DSA_PUBLIC_KEY: '${SSH_HOST_DSA_PUBLIC_KEY}'
+      SSH_HOST_ECDSA_KEY: '${SSH_HOST_ECDSA_KEY}'
+      SSH_HOST_ECDSA_PUBLIC_KEY: '${SSH_HOST_ECDSA_PUBLIC_KEY}'
+      SSH_HOST_ED25519_KEY: '${SSH_HOST_ED25519_KEY}'
+      SSH_HOST_ED25519_PUBLIC_KEY: '${SSH_HOST_ED25519_PUBLIC_KEY}'
+      SSH_HOST_RSA_KEY: '${SSH_HOST_RSA_KEY}'
+      SSH_HOST_RSA_PUBLIC_KEY: '${SSH_HOST_RSA_PUBLIC_KEY}'
+      S3FS_ARGS: '${S3FS_ARGS:-allow_other,mp_umask=002}'
+      S3FS_DEBUG: 0
