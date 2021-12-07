@@ -2,4 +2,5 @@
 !.dockerignore
 !Dockerfile
 !entrypoint.sh
-!scripts/
+!scripts/setup/
+!scripts/sftp.d/

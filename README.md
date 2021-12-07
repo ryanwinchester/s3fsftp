@@ -18,26 +18,8 @@ docker pull ryanwinchester/s3fsftp:latest
  - For local dev, set the required environment variables in the `.env` file.
  - For production, set the ENV variables for the container runtime.
  - Programs in `./scripts/sftp.d` will automatically run when the container starts.
- - Build docker container with `docker compose build`.
- - Run docker container with `docker compose up`.
-
-#### *Without* `docker compose`
-
-Build example:
-
-```sh
-docker build . --no-cache --tag s3fsftp_sftp:latest
-```
-
-Run example:
-
-```sh
-docker run -it -p 22002:22 --init \
-  --env-file .env \
-  --device /dev/fuse \
-  --cap-add SYS_ADMIN \
-  s3fsftp_sftp
-```
+ - Build docker container with `docker compose build` (or `./scripts/docker/build.sh`).
+ - Run docker container with `docker compose up` (or `./scripts/docker/run.sh`).
 
 ### ENV vars
 
