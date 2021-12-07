@@ -4,6 +4,7 @@ services:
     container_name: s3fsftp
     build: .
     restart: unless-stopped
+    init: true
     cap_add:
       - SYS_ADMIN
     devices:

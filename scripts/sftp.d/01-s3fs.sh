@@ -8,7 +8,7 @@
 
 set -e
 
-if [ -n "${AWS_S3_MOUNT}" ]; then
+if [ -z "${AWS_S3_MOUNT}" ]; then
     AWS_S3_MOUNT=/opt/s3fs/bucket
 fi
 
@@ -20,7 +20,7 @@ if [ -z "${AWS_S3_CREDENTIALS}" -a -n "${AWS_S3_ACCESS_KEY_ID}" -a -n "${AWS_S3_
     AWS_S3_CREDENTIALS="${AWS_S3_ACCESS_KEY_ID}:${AWS_S3_SECRET_ACCESS_KEY}"
 fi
 
-if [ -n "${AWS_S3_AUTHFILE}" ]; then
+if [ -z "${AWS_S3_AUTHFILE}" ]; then
     AWS_S3_AUTHFILE=/opt/s3fs/passwd-s3fs
 fi
 

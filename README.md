@@ -1,13 +1,43 @@
-# S3FSTP
+# S3FSFTP
+
+[![Docker Version](https://img.shields.io/docker/v/ryanwinchester/s3fsftp?arch=amd64&sort=date)](https://hub.docker.com/r/ryanwinchester/s3fsftp/tags)
+ [![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/ryanwinchester/s3fsftp)](https://hub.docker.com/r/ryanwinchester/s3fsftp/tags)
+ [![Docker Stars](https://img.shields.io/docker/stars/ryanwinchester/s3fsftp)](https://hub.docker.com/r/ryanwinchester/s3fsftp/tags)
+ [![Docker Pulls](https://img.shields.io/docker/pulls/ryanwinchester/s3fsftp.svg)](https://hub.docker.com/r/ryanwinchester/s3fsftp/tags)
 
 Docker container providing SFTP using an S3 bucket for the users' home directories.
-## Setup
+
+## Using Docker Hub
+
+```sh
+docker pull ryanwinchester/s3fsftp:latest
+```
+
+## Using the repository
 
  - For local dev, set the required environment variables in the `.env` file.
  - For production, set the ENV variables for the container runtime.
  - Programs in `./scripts/sftp.d` will automatically run when the container starts.
  - Build docker container with `docker compose build`.
  - Run docker container with `docker compose up`.
+
+#### *Without* `docker compose`
+
+Build example:
+
+```sh
+docker build . --no-cache --tag s3fsftp_sftp:latest
+```
+
+Run example:
+
+```sh
+docker run -it -p 22002:22 --init \
+  --env-file .env \
+  --device /dev/fuse \
+  --cap-add SYS_ADMIN \
+  s3fsftp_sftp
+```
 
 ### ENV vars
 

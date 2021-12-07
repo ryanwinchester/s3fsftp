@@ -1,3 +1,5 @@
 *
-!/scripts
-!./entrypoint.sh
+!.dockerignore
+!Dockerfile
+!entrypoint.sh
+!scripts/
